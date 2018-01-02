@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadApp } from 'actions/app';
-import styles from './app.scss';
-
-type Props = {
-  dispatch: () => void,
-  loaded: boolean
-}
+import { loadApp } from 'actions';
+import { container } from './stylesheets/app.scss';
+import { appTypes } from '../utils/types';
+import Map from './Map';
 
 export class AppContainer extends Component {
   componentDidMount() {
     this.props.dispatch(loadApp());
   }
-
-  props: Props;
 
   render() {
     if (!this.props.loaded) {
@@ -21,17 +16,19 @@ export class AppContainer extends Component {
     }
 
     return (
-      <div className={styles.container} >
-        <p>Hello React!</p>
+      <div className={container} >
+        <Map />
       </div>
     );
   }
 }
 
-function mapStateToProperties(state) {
+AppContainer.propTypes = appTypes;
+
+const mapStateToProperties = state => {
   return {
     loaded: state.app.loaded
   };
-}
+};
 
 export default connect(mapStateToProperties)(AppContainer);
