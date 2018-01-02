@@ -5,7 +5,7 @@ import { container } from './stylesheets/app.scss';
 import { appTypes } from '../utils/types';
 import Map from './Map';
 
-export class AppContainer extends Component {
+export class App extends Component {
   componentDidMount() {
     this.props.dispatch(loadApp());
   }
@@ -23,7 +23,7 @@ export class AppContainer extends Component {
   }
 }
 
-AppContainer.propTypes = appTypes;
+App.propTypes = appTypes;
 
 const mapStateToProperties = state => {
   return {
@@ -31,4 +31,4 @@ const mapStateToProperties = state => {
   };
 };
 
-export default connect(mapStateToProperties)(AppContainer);
+export default connect(mapStateToProperties)(App);
