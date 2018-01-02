@@ -2,11 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getGeojsonStart } from 'actions';
 import { MAP } from '../utils/constants';
+import {
+  mapContainer,
+  mapVector
+} from './stylesheets/map.scss';
 import { mapTypes } from '../utils/types';
+import * as d3 from 'd3';
 
 export class Map extends Component {
   constructor() {
     super();
+    this.projection = d3.geoMercator()
+      .center([MAP.center.lng, MAP.center.lat])
+      .scale(MAP.scale)
+      .translate([MAP.width / 2, MAP.height / 2]);
+  }
+
+  renderMap(projection, features) {
+    let path = d3.geoPath()
+      .projection(projection);
+
+    d3.select('g#map')
+      .selectAll('path')
+      .data(features)
+      .enter()
+      .append('path')
+      .attr('d', path);
   }
 
   componentDidMount() {
@@ -14,14 +35,25 @@ export class Map extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      console.log(nextProps);
+    const {
+      fetching,
+      geojson,
+      error
+    } = nextProps;
+
+    if (!fetching && geojson) {
+      this.renderMap(this.projection, nextProps.geojson.features);
+    }
   }
 
   render() {
     return (
-      <p>
-        I am Map!
-      </p>
+      <div className={mapContainer}>
+        <svg className={mapVector} viewBox="0 0 1000 1000" >
+          <g id="map" />
+          <g id="vehicles" />
+        </svg>
+      </div>
     );
   }
 }

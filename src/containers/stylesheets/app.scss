@@ -3,6 +3,7 @@
 @import 'base/typography';
 
 .container {
-    height:100vh;
     background-color: $color-white;
+    display: flex;
+    flex-direction: row-reverse;
 }

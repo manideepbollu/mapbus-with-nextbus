@@ -9,7 +9,7 @@ export const MAP = {
   },
   'width': 1000,
   'height': 1000,
-  'scale': 200000,
+  'scale': 300000,
   'center': {
     'lat': 37.773972,
     'lng': -122.431297
