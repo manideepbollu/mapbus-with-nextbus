@@ -9,7 +9,7 @@ import {
 import { mapTypes } from '../utils/types';
 import * as d3 from 'd3';
 
-export class Map extends Component {
+class Map extends Component {
   constructor() {
     super();
     this.projection = d3.geoMercator()

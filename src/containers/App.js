@@ -4,8 +4,9 @@ import { loadApp } from 'actions';
 import { container } from './stylesheets/app.scss';
 import { appTypes } from '../utils/types';
 import Map from './Map';
+import ControlPanel from './ControlPanel';
 
-export class AppContainer extends Component {
+class AppContainer extends Component {
   componentDidMount() {
     this.props.dispatch(loadApp());
   }
@@ -18,6 +19,7 @@ export class AppContainer extends Component {
     return (
       <div className={container} >
         <Map />
+        <ControlPanel />
       </div>
     );
   }

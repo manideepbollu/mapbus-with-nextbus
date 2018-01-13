@@ -3,7 +3,36 @@
 @import 'base/typography';
 
 .container {
-    background-color: $color-white;
+    background-color: $color-silver;
     display: flex;
     flex-direction: row-reverse;
+
+    .controlPanel {
+        padding: 20px;
+        width: 33%;
+        display: inline-block;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .filter {
+        margin-top: 50px;
+        border: 5px solid $color-white;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .button {
+            padding: 10px;
+            min-width: 25px;
+            text-align: center;
+            border-right: 1px solid $color-white;
+            border-bottom: 1px solid $color-white;
+            color: $color-white;
+            background-color: $color-blue;
+            flex-grow: 1;
+        }
+    }
 }

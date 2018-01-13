@@ -1,6 +1,7 @@
 import {
     bool,
     string,
+    array,
     object,
     func
 } from 'prop-types';
@@ -14,4 +15,12 @@ export const mapTypes = {
     fetching: bool,
     geojson: object,
     error: string
+};
+
+export const filtersTypes = {
+    dispatch: func,
+    routes: array,
+    blockedRoutes: array,
+    mapOptions: array,
+    blockedMapOptions: array
 };

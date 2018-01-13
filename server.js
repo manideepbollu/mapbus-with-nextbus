@@ -7,6 +7,7 @@ const port = process.env.PORT ? process.env.PORT : 8181;
 const dist = path.join(__dirname, 'dist');
 
 app.use(express.static(dist));
+app.use('/sfmaps', express.static(path.resolve(__dirname, 'sfmaps')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(dist, 'index.html'));

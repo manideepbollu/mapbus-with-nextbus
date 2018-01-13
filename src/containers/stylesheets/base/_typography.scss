@@ -1,8 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lobster|Open+Sans|Varela+Round');
+@import 'base/palette';
 
 body{
-    color: rgb(78, 67, 67);
+    color: $color-black;
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Varela Round', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: $color-dark;
+    }
+
+    button {
+        font-family: 'Varela Round', sans-serif;
+        color: $color-dark;
+    }
 }

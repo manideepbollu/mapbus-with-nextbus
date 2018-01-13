@@ -1,8 +1,7 @@
 import { 
     GET_GEOJSON_START,
-    GET_GEOJSON_PENDING,
-    GET_GEOJSON_COMPLETE,
-    GET_GEOJSON_ERROR
+    GET_GEOJSON_ERROR,
+    GET_GEOJSON_COMPLETE
 } from 'actions/actionTypes';
 
 const initialState = {
