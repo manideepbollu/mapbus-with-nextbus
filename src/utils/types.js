@@ -13,7 +13,14 @@ export const appTypes = {
 export const mapTypes = {
     dispatch: func,
     fetching: bool,
-    geojson: object,
+    geojson: array,
+    error: string
+};
+
+export const vehicleTypes = {
+    dispatch: func,
+    fetching: bool,
+    vehiclePositions: array,
     error: string
 };
 

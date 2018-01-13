@@ -8,16 +8,19 @@ import {
 import { GET_VEHICLE_POSITIONS_START } from '../actions/actionTypes';
 import { VEHICLES } from '../utils/constants';
 
-const mapRoutes = (vehiclePositions) => {
-    const routes = vehiclePositions.map(vehicle => vehicle.routeTag);
-    const dispatch = () => void;
-    dispatch(getRoutesForFilter(routes));
-}
+// const mapRoutes = (vehiclePositions) => {
+//     const routes = vehiclePositions.map(vehicle => vehicle.routeTag);
+//     const dispatch = () => void;
+//     dispatch(getRoutesForFilter(routes));
+// }
 
 const loadVehiclePositions = () => {
-    return ajax({ 'url': VEHICLES.api, 'crossDomain': true })
+    return ajax({ 
+            'url': VEHICLES.api, 
+            'crossDomain': true 
+        })
         .map(({ response }) => {
-            mapRoutes(response.vehicle);
+            // mapRoutes(response.vehicle);
             return getVehiclePositionsComplete(response);
         });
 };

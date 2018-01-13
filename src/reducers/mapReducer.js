@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     fetching: false,
-    geojson: {},
+    geojson: [],
     error: null
 };
 
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
         case GET_GEOJSON_START:
             return { ...state, fetching: true };
         case GET_GEOJSON_COMPLETE:
-            return { ...state, fetching: false, geojson: action.payload };
+            return { ...state, fetching: false, geojson: action.payload.features };
         default:
             return state;
     }

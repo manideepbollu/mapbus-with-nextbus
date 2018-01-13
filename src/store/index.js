@@ -9,9 +9,7 @@ import * as reducers from 'reducers';
 // Import all epics
 import { default as epics } from 'epics';
 
-// Configure reducer to store state at state.router
-// You can store it elsewhere by specifying a custom `routerStateSelector`
-// in the store enhancer below
+// Configured reducer to store state at state.router
 export const history = createBrowserHistory();
 const reducer = combineReducers({ ...reducers });
 const epic = combineEpics( ...epics );

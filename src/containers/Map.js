@@ -2,58 +2,43 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getGeojsonStart } from 'actions';
 import { MAP } from '../utils/constants';
-import {
-  mapContainer,
-  mapVector
-} from './stylesheets/map.scss';
+import { projection } from '../utils/projection';
 import { mapTypes } from '../utils/types';
-import * as d3 from 'd3';
+import { geoPath, select } from 'd3';
 
 class Map extends Component {
   constructor() {
     super();
-    this.projection = d3.geoMercator()
-      .center([MAP.center.lng, MAP.center.lat])
-      .scale(MAP.scale)
-      .translate([MAP.width / 2, MAP.height / 2]);
+    this.renderMap.bind(this);
   }
 
-  renderMap(projection, features) {
-    let path = d3.geoPath()
+  renderMap() {
+    const node = this.node;
+    const path = geoPath()
       .projection(projection);
 
-    d3.select('g#map')
+    const selection = select(node)
       .selectAll('path')
-      .data(features)
-      .enter()
+      .data(this.props.geojson);
+
+    selection.enter()
       .append('path')
       .attr('d', path);
   }
 
   componentDidMount() {
+    // Subscribe to updates in Map Data
     this.props.dispatch(getGeojsonStart(MAP.geojson.neighborhoods));
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      fetching,
-      geojson,
-      error
-    } = nextProps;
-
-    if (!fetching && geojson) {
-      this.renderMap(this.projection, nextProps.geojson.features);
-    }
+  componentDidUpdate() {
+    // Render map everytime component updates
+    this.renderMap();
   }
 
   render() {
     return (
-      <div className={mapContainer}>
-        <svg className={mapVector} viewBox="0 0 1000 1000" >
-          <g id="map" />
-          <g id="vehicles" />
-        </svg>
-      </div>
+      <g id="map" ref={node => this.node = node} />
     );
   }
 }

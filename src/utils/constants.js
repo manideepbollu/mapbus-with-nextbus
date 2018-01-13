@@ -20,5 +20,6 @@ export const MAP = {
 
 export const VEHICLES = {
   'pollingInterval': 15000,
+  'iconSize': 8,
   'api': '//webservices.nextbus.com/service/publicJSONFeed?command=vehicleLocations&a=sf-muni&t=' + lastTime
 };
