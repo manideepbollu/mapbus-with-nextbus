@@ -3,33 +3,60 @@ import { Observable } from 'rxjs';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { 
     getVehiclePositionsComplete,
-    getRoutesForFilter 
+    getVehiclePositionsError,
+    setRoutesForFilter 
 } from 'actions';
 import { GET_VEHICLE_POSITIONS_START } from '../actions/actionTypes';
 import { VEHICLES } from '../utils/constants';
 
-// const mapRoutes = (vehiclePositions) => {
-//     const routes = vehiclePositions.map(vehicle => vehicle.routeTag);
-//     const dispatch = () => void;
-//     dispatch(getRoutesForFilter(routes));
-// }
+/**
+ * Format locations from the NextBus response
+ * @param {*} vehicles = "vehicle" property from NextBus response
+ */
+const formatLocations = vehicles => vehicles.map(vehicle => Object.create({
+    id: vehicle.id,
+    routeId: vehicle.routeTag,
+    coordinates: [
+        vehicle.lon,
+        vehicle.lat
+    ]
+}));
 
-const loadVehiclePositions = () => {
-    return ajax({ 
-            'url': VEHICLES.api, 
-            'crossDomain': true 
-        })
-        .map(({ response }) => {
-            // mapRoutes(response.vehicle);
-            return getVehiclePositionsComplete(response);
-        });
+/**
+ * Format routes from the NextBus response
+ * @param {*} vehicles = "vehicle" property from NextBus response
+ */
+const formatRoutes = vehicles => {
+    const routeArray = vehicles.map(vehicle =>
+        vehicle.routeTag
+    )
+    return [ ...new Set(routeArray) ];
 };
 
+/**
+ * LoadVehiclePositions() is responsible for dispatching 
+ * getVehiclePositionsComplete() & setRoutesForFilter()
+ */
+const loadVehiclePositions = () => {
+    return ajax({ 'url': VEHICLES.api, 'crossDomain': true })
+        .mergeMap(({response}) => 
+            Observable.of(
+                getVehiclePositionsComplete(formatLocations(response.vehicle)),
+                setRoutesForFilter(formatRoutes(response.vehicle))
+            )
+        )
+        .catch(error => 
+            Observable.of(getVehiclePositionsError(error.message))
+        );
+};
+
+/**
+ * Set timer for polling at a certain interval
+ */
 const intervalPolling = () => {
     return Observable
-        // emit locations immediatly and then every 15s
         .timer(0, VEHICLES.pollingInterval)
-        .switchMap(loadVehiclePositions);
+        .mergeMap(loadVehiclePositions);
 };
 
 

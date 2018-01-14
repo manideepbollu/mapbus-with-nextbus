@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getGeojsonStart } from 'actions';
-import { MAP } from '../utils/constants';
 import { projection } from '../utils/projection';
 import { mapTypes } from '../utils/types';
 import { geoPath, select } from 'd3';
@@ -17,6 +15,9 @@ class Map extends Component {
     const path = geoPath()
       .projection(projection);
 
+    // Render a fresh map everytime component updates
+    select(node).selectAll('path').remove();
+
     const selection = select(node)
       .selectAll('path')
       .data(this.props.geojson);
@@ -24,11 +25,6 @@ class Map extends Component {
     selection.enter()
       .append('path')
       .attr('d', path);
-  }
-
-  componentDidMount() {
-    // Subscribe to updates in Map Data
-    this.props.dispatch(getGeojsonStart(MAP.geojson.neighborhoods));
   }
 
   componentDidUpdate() {

@@ -11,15 +11,15 @@ export const MAP = {
   },
   'width': 1000,
   'height': 1000,
-  'scale': 300000,
+  'scale': 340000,
   'center': {
-    'lat': 37.767072,
+    'lat': 37.767572,
     'lng': -122.437297
   }
 };
 
 export const VEHICLES = {
   'pollingInterval': 15000,
-  'iconSize': 8,
+  'iconSize': 7,
   'api': '//webservices.nextbus.com/service/publicJSONFeed?command=vehicleLocations&a=sf-muni&t=' + lastTime
 };

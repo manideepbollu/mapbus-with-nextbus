@@ -11,4 +11,9 @@ export const getVehiclePositionsStart = actionCreator(actionTypes.GET_VEHICLE_PO
 export const getVehiclePositionsError = actionCreator(actionTypes.GET_VEHICLE_POSITIONS_ERROR);
 export const getVehiclePositionsComplete = actionCreator(actionTypes.GET_VEHICLE_POSITIONS_COMPLETE);
 
-export const getRoutesForFilter = actionCreator(actionTypes.GET_ROUTES_FOR_FILTER);
+export const setRoutesForFilter = actionCreator(actionTypes.SET_ROUTES_FOR_FILTER);
+export const addBlockedRoute = actionCreator(actionTypes.ADD_BLOCKED_ROUTE);
+export const removeBlockedRoute = actionCreator(actionTypes.REMOVE_BLOCKED_ROUTE);
+
+export const addBlockedMapOption = actionCreator(actionTypes.ADD_BLOCKED_MAP_OPTION);
+export const removeBlockedMapOption = actionCreator(actionTypes.REMOVE_BLOCKED_MAP_OPTION);

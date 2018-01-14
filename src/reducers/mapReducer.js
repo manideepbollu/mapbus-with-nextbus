@@ -11,11 +11,12 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+    console.log(action.type);
     switch (action.type) {
         case GET_GEOJSON_START:
             return { ...state, fetching: true };
         case GET_GEOJSON_COMPLETE:
-            return { ...state, fetching: false, geojson: action.payload.features };
+            return { ...state, fetching: false, geojson: action.payload };
         default:
             return state;
     }

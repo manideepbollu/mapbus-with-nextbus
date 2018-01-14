@@ -2,10 +2,27 @@
 @import 'base/palette';
 @import 'base/typography';
 
+%button {
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    border-right: 1px solid $color-white;
+    border-bottom: 1px solid $color-white;
+    color: $color-white;
+    background-color: $color-blue;
+    cursor: pointer;
+
+    &.blocked {
+        background-color: lighten($color-blue, 20);
+        color: $color-dark;
+    }
+}
+
 .container {
     background-color: $color-silver;
     display: flex;
     flex-direction: row-reverse;
+    overflow: hidden;
 
     .mapContainer {
         width: 65%;
@@ -23,7 +40,9 @@
             }
 
             circle {
-                fill: darken($color-blue, 30);
+                fill: $color-dark;
+                stroke: $color-gray;
+                stroke-width: 3px;
             }
         }
     }
@@ -31,6 +50,8 @@
     .controlPanel {
         padding: 20px;
         width: 33%;
+        height: calc(100vh - 40px);
+        overflow-y: scroll;
         display: inline-block;
     }
 
@@ -40,20 +61,49 @@
 
     .filter {
         margin-top: 50px;
-        border: 5px solid $color-white;
+        background-color: $color-white;
+        padding: 12px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
 
-        .button {
-            padding: 10px;
-            min-width: 25px;
-            text-align: center;
-            border-right: 1px solid $color-white;
-            border-bottom: 1px solid $color-white;
-            color: $color-white;
-            background-color: $color-blue;
+        p {
+            width: 100%;
+            margin: -5px 0 5px 0; 
+            color: $color-dark;
+            font-size: 0.9rem;
+        }
+
+        .routeButton {
+            @extend %button;
+            width: 28px;
+            &.extended {
+                width: 77px;
+            }
+        }
+
+        .mapButton {
+            @extend %button;
             flex-grow: 1;
+        }
+    }
+
+    .throwError {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: absolute;
+        background-color: $color-white;
+        padding: 20px 50px;
+        left: 0;
+        right: 0;
+        height: calc(100vh - 40px);
+        z-index: 1000;
+        opacity: 0.8;
+        span {
+            color: $color-dark;
+            white-space: pre-line;
         }
     }
 }

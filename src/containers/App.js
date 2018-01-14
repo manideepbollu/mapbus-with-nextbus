@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadApp } from 'actions';
-import { 
+import {
   container,
   mapContainer,
-  mapVector 
+  mapVector
 } from './stylesheets/app.scss';
 import { appTypes } from '../utils/types';
+import ErrorBoundary from './ErrorBoundary';
 import Map from './Map';
 import Vehicles from './Vehicles';
 import ControlPanel from './ControlPanel';
@@ -24,10 +25,12 @@ class AppContainer extends Component {
     return (
       <div className={container} >
         <div className={mapContainer}>
-          <svg className={mapVector} viewBox="0 0 1000 1000" >
-            <Map />
-            <Vehicles />
-          </svg>
+          <ErrorBoundary >
+            <svg className={mapVector} viewBox="0 0 1000 1000" >
+              <Map />
+              <Vehicles />
+            </svg>
+          </ ErrorBoundary>
         </div>
         <ControlPanel />
       </div>

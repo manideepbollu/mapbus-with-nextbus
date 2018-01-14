@@ -21,13 +21,18 @@ export const vehicleTypes = {
     dispatch: func,
     fetching: bool,
     vehiclePositions: array,
+    blockedRoutes: array,
     error: string
 };
 
-export const filtersTypes = {
+export const routeFilterTypes = {
     dispatch: func,
     routes: array,
-    blockedRoutes: array,
-    mapOptions: array,
-    blockedMapOptions: array
+    blockedRoutes: array
+};
+
+export const mapFilterTypes = {
+    dispatch: func,
+    routes: array,
+    blockedRoutes: array
 };
