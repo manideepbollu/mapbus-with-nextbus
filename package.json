@@ -16,9 +16,12 @@
   "scripts": {
     "start": "webpack-dev-server --hot",
     "server": "babel-watch server",
+    "production": "babel-node server",
     "test": "jest",
+    "postinstall": "npm run build",
     "eslint": "eslint .",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.production.js --progress --profile --colors"
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.production.js --progress --profile --colors",
+    "surge": "rm -rf dist && npm run build && cp dist/index.html dist/200.html && surge dist"
   },
   "engines": {
     "node": ">=6.6.0",
