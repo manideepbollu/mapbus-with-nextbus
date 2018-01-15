@@ -6,7 +6,8 @@ Realtime SF Muni Bus map based on NextBus API.
 
 Stack:
 * React 16
-* Redux
+* d3.js
+* Redux-obrservable
 * Webpack 3
 * Babel 6 
 * SCSS modules
