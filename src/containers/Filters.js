@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RouteFilter from './RouteFilter';
 import MapFilter from './MapFilter';
 
-class Filters extends Component {
-    render() {
-        return (
-            <div>
-                <MapFilter />
-                <RouteFilter />
-            </div>
-        );
-    }
-}
+const Filters = () => (
+  <div>
+    <MapFilter />
+    <RouteFilter />
+  </div>
+);
 
 export default Filters;

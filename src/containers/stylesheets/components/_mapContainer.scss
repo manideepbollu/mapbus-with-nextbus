@@ -1,0 +1,10 @@
+.mapContainer {
+  width: 65%;
+  height:100vh;
+  background-color: $color-white;
+  border-left: 1px solid $color-gray;
+
+  @import 'loader';
+  @import 'mapVector';
+  @import 'footer';
+}

@@ -3,14 +3,23 @@
 
 body{
     color: $color-black;
-    font-family: 'Varela Round', 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
 
     h1, h2, h3, h4, h5, h6 {
-        font-family: 'Varela Round', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         font-size: 1.5rem;
         font-weight: 400;
         color: $color-dark;
+    }
+
+    a {
+        text-decoration: none;
+        border-bottom: 1px dotted $color-dark;
+        color: $color-black;
+        &:hover {
+            color: $color-dark;
+        }
     }
 }

@@ -1,0 +1,7 @@
+.routeButton {
+  @extend %button;
+  width: 28px;
+  &.extended {
+      width: 77px;
+  }
+}

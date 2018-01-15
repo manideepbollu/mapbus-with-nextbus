@@ -6,9 +6,9 @@ import App from 'containers/App';
 
 const routes = (
   <ConnectedRouter history={history}>
-      <Switch>
-        <Route exact path="/" component={App} />
-      </Switch>
+    <Switch>
+      <Route exact path="/" component={App} />
+    </Switch>
   </ConnectedRouter>
 );
 

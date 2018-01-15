@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { projection } from '../utils/projection';
-import { mapTypes } from '../utils/types';
 import { geoPath, select } from 'd3';
+import { mapTypes } from '../utils/types';
+import projection from '../utils/projection';
 
 class Map extends Component {
   constructor() {
@@ -10,8 +10,13 @@ class Map extends Component {
     this.renderMap.bind(this);
   }
 
+  componentDidUpdate() {
+    // Render map everytime component updates
+    this.renderMap();
+  }
+
   renderMap() {
-    const node = this.node;
+    const { node } = this;
     const path = geoPath()
       .projection(projection);
 
@@ -25,28 +30,25 @@ class Map extends Component {
     selection.enter()
       .append('path')
       .attr('d', path);
-  }
 
-  componentDidUpdate() {
-    // Render map everytime component updates
-    this.renderMap();
+    if (this.props.error) {
+      throw new Error(this.props.error);
+    }
   }
 
   render() {
     return (
-      <g id="map" ref={node => this.node = node} />
+      <g id="map" ref={node => { this.node = node; }} />
     );
   }
 }
 
 Map.propTypes = mapTypes;
 
-const mapStateToProperties = state => {
-  return {
-    fetching: state.map.fetching,
-    geojson: state.map.geojson,
-    error: state.map.error
-  };
-};
+const mapStateToProperties = state => ({
+  fetching: state.map.fetching,
+  geojson: state.map.geojson,
+  error: state.map.error
+});
 
 export default connect(mapStateToProperties)(Map);

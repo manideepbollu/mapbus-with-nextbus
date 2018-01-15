@@ -1,0 +1,17 @@
+.filter {
+  margin-top: 50px;
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  p {
+      width: 100%;
+      margin: -5px 0 5px 0; 
+      color: $color-dark;
+      font-size: 0.9rem;
+  }
+
+  @import 'mapFilter';
+  @import 'routeFilter';
+}

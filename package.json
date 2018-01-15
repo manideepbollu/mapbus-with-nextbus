@@ -16,14 +16,9 @@
   "scripts": {
     "start": "webpack-dev-server --hot",
     "server": "babel-watch server",
-    "production": "babel-node server",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "postinstall": "npm run build",
     "eslint": "eslint .",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.production.js --progress --profile --colors",
-    "surge": "rm -rf dist && npm run build && cp dist/index.html dist/200.html && surge dist"
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.production.js --progress --profile --colors"
   },
   "engines": {
     "node": ">=6.6.0",
@@ -37,14 +32,16 @@
     "moduleNameMapper": {
       "^.+\\.(css)$": "identity-obj-proxy"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/src/test/setup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/test/setup.js",
+    "transform": {
+      ".*": "<rootDir>/node_modules/jest-css-modules"
+    }
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",
     "babel-plugin-react-transform": "^3.0.0",
     "babel-watch": "^2.0.7",
-    "enzyme-adapter-react-16": "^1.0.0",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-import-resolver-webpack": "^0.8.3",
@@ -54,6 +51,7 @@
     "identity-obj-proxy": "^3.0.0",
     "imports-loader": "^0.7.1",
     "jest-cli": "^21.2.1",
+    "jest-css-modules": "^1.1.0",
     "react-test-renderer": "^16.0.0",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
@@ -75,6 +73,7 @@
     "css-loader": "^0.28.7",
     "d3": "^4.12.2",
     "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
     "express": "^4.16.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.3",

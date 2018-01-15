@@ -1,0 +1,15 @@
+%button {
+  padding: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  border-right: 1px solid $color-white;
+  border-bottom: 1px solid $color-white;
+  color: $color-white;
+  background-color: $color-blue;
+  cursor: pointer;
+
+  &.blocked {
+      background-color: lighten($color-blue, 30);
+      color: $color-dark;
+  }
+}

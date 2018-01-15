@@ -1,0 +1,10 @@
+.controlPanel {
+  padding: 20px;
+  width: 33%;
+  height: calc(100vh - 40px);
+  overflow-y: scroll;
+  display: inline-block;
+
+  @import 'filters';
+  @import 'header';
+}

@@ -1,7 +1,7 @@
-import { default as mapEpic } from './mapEpic';
-import { default as vehiclesEpic } from './vehiclesEpic';
+import mapEpic from './mapEpic';
+import vehiclesEpic from './vehiclesEpic';
 
 export default [
-    mapEpic,
-    vehiclesEpic
+  mapEpic,
+  vehiclesEpic
 ];
